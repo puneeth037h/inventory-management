@@ -1,0 +1,13 @@
+.nav>h1{
+    margin: 0px 0px 50px 0px;
+  }
+  .nav > button{
+    border: none;
+    font-size: 30px;
+    background-color: transparent;
+    margin: 10px;
+    width: 200px;
+  }
+  .nav>button:hover{
+    color:orange;
+  }
