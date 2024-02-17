@@ -4,8 +4,8 @@ import Categories from "../../Categories/Categories";
 function CustomeRouters(){
     return(
     <Routes>
-        <Route path="/" element={<Home></Home>}></Route>
-        <Route path="categories" element={<Categories></Categories>}></Route>
+        <Route path="/home" element={<Home></Home>}></Route>
+        <Route path="/" element={<Categories></Categories>}></Route>
         
     </Routes>
     );
