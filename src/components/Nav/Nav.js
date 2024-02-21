@@ -5,9 +5,9 @@ function Nav(){
     return(
             <div className="nav">
                 <h1>Inventory Management</h1>    
-                <button>Home</button>
-                <button>Categories</button>
-                <button>Products</button>
+                <Link to={'/home'}><button>Home</button></Link>
+                <Link to={"/categories"}><button>Categories</button></Link>
+                <Link to={"/products"}><button>Products</button></Link>
                 <button>Seller</button>
                 <button>Distributer</button>
                 <button>Customer</button>
