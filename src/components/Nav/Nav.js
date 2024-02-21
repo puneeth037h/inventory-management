@@ -5,13 +5,13 @@ function Nav(){
     return(
             <div className="nav">
                 <h1>Inventory Management</h1>    
-                <Link to={'/home'}><button>Home</button></Link>
-                <Link to={"/categories"}><button>Categories</button></Link>
-                <Link to={"/products"}><button>Products</button></Link>
-                <button>Seller</button>
-                <button>Distributer</button>
-                <button>Customer</button>
-                <button>Orders</button>
+                <Link to={'/home'} className="links"><button>Home</button></Link>
+                <Link to={"/categories"} className="links"><button>Categories</button></Link>
+                <Link to={"/products"} className="links"><button>Products</button></Link>
+                <Link to={"/seller"} className="links"><button>Seller</button></Link>
+                <Link to={"/distributer"} className="links"><button>Distributer</button></Link>
+                <Link to={"/customer"} className="links"><button>Customer</button></Link>
+                <Link to={"/orders"} className="links"><button>Orders</button></Link>
                 <Outlet></Outlet>
             </div>
     );
