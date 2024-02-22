@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Seller(){
     const [sellersdata, setsellersData] = useState([]);
@@ -18,6 +19,10 @@ function Seller(){
 
     return (
         <div>
+            <div>
+                <Link to={"/insertseller"} ><button>insert new seller</button></Link>
+            </div>
+            <div>
             {sellersdata.map((elem, indx) => {
                 return (
                     <div key={indx} className="categoriesList">
@@ -25,9 +30,12 @@ function Seller(){
                         <p>{elem.sellerName}</p>
                         <p>{elem.phone}</p>
                         <p>{elem.address}</p>
+                        <Link><button>edit</button></Link>
+                        <Link><button>delete</button></Link>
                     </div>
                 );
             })}
+            </div>
         </div>
     );
 }

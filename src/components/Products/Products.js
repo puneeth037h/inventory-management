@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Products(){
     const [productsdata, setproductsData] = useState([]);
@@ -18,6 +19,10 @@ function Products(){
 
     return (
         <div>
+            <div>
+                <Link to={"/insertproduct"}><button>insert new customer</button></Link>
+            </div>
+            <div>
             {productsdata.map((elem, indx) => {
                 return (
                     <div key={indx} className="categoriesList">
@@ -29,9 +34,12 @@ function Products(){
                         <p>{elem.description}</p>
                         <p>{elem.noOfProducts}</p>
                         <p>{elem.price}</p>
+                        <Link><button>edit</button></Link>
+                        <Link><button>delete</button></Link>
                     </div>
                 );
             })}
+            </div>
         </div>
     );
 }

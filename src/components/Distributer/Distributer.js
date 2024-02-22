@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Distributer(){
     const [distributersdata, setdistributersData] = useState([]);
@@ -18,6 +19,9 @@ function Distributer(){
 
     return (
         <div>
+            <div>
+                <Link to={"/insertdistributer"}><button>insert new distributer</button></Link>
+            </div>
             {distributersdata.map((elem, indx) => {
                 return (
                     <div key={indx} className="categoriesList">
@@ -25,6 +29,8 @@ function Distributer(){
                         <p>{elem.distributerName}</p>
                         <p>{elem.phone}</p>
                         <p>{elem.address}</p>
+                        <Link><button>edit</button></Link>
+                        <Link><button>delete</button></Link>
                     </div>
                 );
             })}

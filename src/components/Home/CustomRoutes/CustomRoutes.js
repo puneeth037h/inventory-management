@@ -6,6 +6,12 @@ import Products from "../../Products/Products";
 import Seller from "../../Seller/Seller";
 import Distributer from "../../Distributer/Distributer";
 import Customer from "../../Customer/Customer";
+import InsertCategories from "../../Inserts/InsertCategories";
+import InsertSeller from "../../Inserts/InsertSeller";
+import InsertDistributer from "../../Inserts/InsertDistributer";
+import InsertCustomer from "../../Inserts/InsertCustomer";
+import InsertProduct from "../../Inserts/InsertProduct";
+import InsertOrder from "../../Inserts/InsertOrder";
 function CustomeRouters(){
     return(
     <Routes>
@@ -16,7 +22,12 @@ function CustomeRouters(){
         <Route path="/seller" element={<Seller></Seller>}></Route>
         <Route path="/distributer" element={<Distributer></Distributer>}></Route>
         <Route path="/customer" element={<Customer></Customer>}></Route>
-        
+        <Route path="/insertcategories" element={<InsertCategories></InsertCategories>}></Route>
+        <Route path="/insertseller" element={<InsertSeller></InsertSeller>}></Route>
+        <Route path="/insertdistributer" element={<InsertDistributer></InsertDistributer>}></Route>
+        <Route path="/insertcustomer" element={<InsertCustomer></InsertCustomer>}></Route>
+        <Route path="/insertproduct" element={<InsertProduct></InsertProduct>}></Route>
+        <Route path="/insertorder" element={<InsertOrder></InsertOrder>}></Route>
     </Routes>
     );
 }

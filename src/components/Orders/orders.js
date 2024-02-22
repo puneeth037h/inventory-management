@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Orders(){
     const [ordersdata, setordersData] = useState([]);
@@ -18,6 +19,9 @@ function Orders(){
 
     return (
         <div>
+            <div>
+                <Link to={"/insertorder"}><button>new order</button></Link>
+            </div>
             {ordersdata.map((elem, indx) => {
                 return (
                     <div key={indx} className="categoriesList">
@@ -25,6 +29,8 @@ function Orders(){
                         <p>{elem.productName}</p>
                         <p>{elem.customerName }</p>
                         <p>{elem.purchaseDate}</p>
+                        <Link><button>edit</button></Link>
+                        <Link><button>delete</button></Link>
                     </div>
                 );
             })}
