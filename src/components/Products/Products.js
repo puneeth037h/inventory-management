@@ -34,7 +34,7 @@ function Products(){
                         <p>{elem.description}</p>
                         <p>{elem.noOfProducts}</p>
                         <p>{elem.price}</p>
-                        <Link><button>edit</button></Link>
+                        <Link to={`/updateproduct/${elem.productId}`}><button>edit</button></Link>
                         <Link><button>delete</button></Link>
                     </div>
                 );

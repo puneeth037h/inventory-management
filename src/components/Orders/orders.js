@@ -20,7 +20,7 @@ function Orders(){
     return (
         <div>
             <div>
-                <Link to={"/insertorder"}><button>new order</button></Link>
+                <Link to={"/insertorder"} ><button>new order</button></Link>
             </div>
             {ordersdata.map((elem, indx) => {
                 return (
@@ -29,7 +29,7 @@ function Orders(){
                         <p>{elem.productName}</p>
                         <p>{elem.customerName }</p>
                         <p>{elem.purchaseDate}</p>
-                        <Link><button>edit</button></Link>
+                        <Link to={`/updateorders/${elem.orderId}`}><button>edit</button></Link>
                         <Link><button>delete</button></Link>
                     </div>
                 );

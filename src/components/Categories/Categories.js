@@ -28,7 +28,7 @@ function Categories() {
                     <div key={indx} className="categoriesList">
                         <p>{elem.categoryName}</p>
                         <p>{elem.categoryId}</p>
-                        <Link><button>edit</button></Link>
+                        <Link to={`/updatecategories/${elem.categoryId}`}><button>edit</button></Link>
                         <Link><button>delete</button></Link>
                     </div>
                 );

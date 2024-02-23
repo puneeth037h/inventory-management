@@ -29,7 +29,7 @@ function Distributer(){
                         <p>{elem.distributerName}</p>
                         <p>{elem.phone}</p>
                         <p>{elem.address}</p>
-                        <Link><button>edit</button></Link>
+                        <Link to={`/updatedistributer/${elem.distributerId}`}><button>edit</button></Link>
                         <Link><button>delete</button></Link>
                     </div>
                 );

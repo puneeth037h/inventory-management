@@ -30,7 +30,7 @@ function Seller(){
                         <p>{elem.sellerName}</p>
                         <p>{elem.phone}</p>
                         <p>{elem.address}</p>
-                        <Link><button>edit</button></Link>
+                        <Link to={`/updateseller/${elem.sellerId}`}><button>edit</button></Link>
                         <Link><button>delete</button></Link>
                     </div>
                 );

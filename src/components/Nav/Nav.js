@@ -5,7 +5,7 @@ function Nav(){
     return(
             <div className="nav">
                 <h1>Inventory Management</h1>    
-                <Link to={'/home'} className="links"><button>Home</button></Link>
+                <Link to={'/'} className="links"><button>Home</button></Link>
                 <Link to={"/categories"} className="links"><button>Categories</button></Link>
                 <Link to={"/products"} className="links"><button>Products</button></Link>
                 <Link to={"/seller"} className="links"><button>Seller</button></Link>

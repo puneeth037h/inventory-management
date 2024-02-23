@@ -30,7 +30,7 @@ function Customer(){
                         <p>{elem.customerName}</p>
                         <p>{elem.phone}</p>
                         <p>{elem.address}</p>
-                        <Link><button>edit</button></Link>
+                        <Link to={`/updatecustomer/${elem.customerId}`}><button>edit</button></Link>
                         <Link><button>delete</button></Link>
                     </div>
                 );
