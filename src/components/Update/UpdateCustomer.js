@@ -36,16 +36,18 @@ function UpdateCustomer(){
     }
     return(
         <div>
+            <div>
             <label className='booking-label'>customerName</label>
-            <input onChange={(val) => {setcustomerName(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter your name' />
-                
+            <input onChange={(val) => {setcustomerName(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter Customer name' required />
+
             <label className='booking-label'>phone</label>
-            <input onChange={(val) => {setphone(val.target.value)}} className='booking-inputbar' type="number" placeholder='enter your Mobile number' />
+            <input onChange={(val) => {setphone(val.target.value)}} className='booking-inputbar' type="number" placeholder='enter customer Mobile number' required/>
 
             <label className='booking-label'>address</label>
-            <input onChange={(val) => {setaddress(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter your name' />
+            <input onChange={(val) => {setaddress(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter customer Address' required />
+            </div>
                 
-            <button className='button' type='submit' onClick={send}>Book Now</button>
+            <button className='button' type='submit' onClick={send}>Update</button>
             
         </div>
     );

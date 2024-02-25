@@ -29,15 +29,20 @@ function InsertCategories(){
     }
     return(
         <div>
+            <div>
             <label className='booking-label'>categoryName</label>
-            <input onChange={(val) => {setcategoryName(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter your name' />
+            <input onChange={(val) => {setcategoryName(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter category name'  required/>
                 
-            <label className='booking-label'>category</label>
-            <input onChange={(val) => {setcategoryId(val.target.value)}} className='booking-inputbar' type="number" placeholder='enter your Mobile number' />
+            <label className='booking-label'>categoryId</label>
+            <input onChange={(val) => {setcategoryId(val.target.value)}} className='booking-inputbar' type="number" placeholder='enter categoryId' required />
                 
-            <button className='button' type='submit' onClick={send}>Book Now</button>
             
         </div>
+        <div>
+            <button className='button' type='submit' onClick={send}>Insert</button>
+        </div>
+        </div>
+        
     );
 }
 

@@ -31,10 +31,12 @@ function UpdateCategories(){
     }
     return(
         <div>
+            <div>
             <label className='booking-label'>categoryName</label>
-            <input onChange={(val) => {setcategoryName(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter your name' />
+            <input onChange={(val) => {setcategoryName(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter category name'  required/>
+            </div>
                 
-            <button className='button' type='submit' onClick={send}>Book Now</button>
+            <button className='button' type='submit' onClick={send}>Update</button>
             
         </div>
     );

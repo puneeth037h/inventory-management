@@ -35,19 +35,22 @@ function InsertOrder(){
     }
     return(
         <div>
+            <div>
             <label className='booking-label'>orderId</label>
-            <input onChange={(val) => {setorderId(val.target.value)}} className='booking-inputbar' type="number" placeholder='enter your name' />
+            <input onChange={(val) => {setorderId(val.target.value)}} className='booking-inputbar' type="number" placeholder='enter OrderId' required/>
                 
             <label className='booking-label'>productId </label>
-            <input onChange={(val) => {setproductId (val.target.value)}} className='booking-inputbar' type="number" placeholder='enter your Mobile number' />
+            <input onChange={(val) => {setproductId (val.target.value)}} className='booking-inputbar' type="number" placeholder='enter productId' required/>
 
             <label className='booking-label'>customerId</label>
-            <input onChange={(val) => {setcustomerId(val.target.value)}} className='booking-inputbar' type="number" placeholder='enter your Mobile number' />
+            <input onChange={(val) => {setcustomerId(val.target.value)}} className='booking-inputbar' type="number" placeholder='enter customerId' required/>
 
             <label className='booking-label'>purchaseDate</label>
-            <input onChange={(val) => {setpurchaseDate(val.target.value)}} className='booking-inputbar' type="date" placeholder='enter your name' />
+            <input onChange={(val) => {setpurchaseDate(val.target.value)}} className='booking-inputbar' type="date" placeholder='enter purchase date'
+            required />
+            </div>
                 
-            <button className='button' type='submit' onClick={send}>Book Now</button>
+            <button className='button' type='submit' onClick={send}>Insert</button>
             
         </div>
     );

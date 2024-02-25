@@ -35,19 +35,21 @@ function InsertDistributer(){
     }
     return(
         <div>
+            <div>
             <label className='booking-label'>distributerName</label>
-            <input onChange={(val) => {setdistributerName(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter your name' />
+            <input onChange={(val) => {setdistributerName(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter distributer name' required />
                 
             <label className='booking-label'>distributerId</label>
-            <input onChange={(val) => {setdistributerId(val.target.value)}} className='booking-inputbar' type="number" placeholder='enter your Mobile number' />
+            <input onChange={(val) => {setdistributerId(val.target.value)}} className='booking-inputbar' type="number" placeholder='enter distributerId' required />
 
             <label className='booking-label'>phone</label>
-            <input onChange={(val) => {setphone(val.target.value)}} className='booking-inputbar' type="number" placeholder='enter your Mobile number' />
+            <input onChange={(val) => {setphone(val.target.value)}} className='booking-inputbar' type="number" placeholder='enter distributer Mobile number' required/>
 
             <label className='booking-label'>address</label>
-            <input onChange={(val) => {setaddress(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter your name' />
+            <input onChange={(val) => {setaddress(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter distributer address' required />
+            </div>
                 
-            <button className='button' type='submit' onClick={send}>Book Now</button>
+            <button className='button' type='submit' onClick={send}>Insert</button>
             
         </div>
     );
