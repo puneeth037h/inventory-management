@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-
+import { Link } from "react-router-dom";
 function InsertDistributer(){
     let [distributerId ,setdistributerId ]=useState();
     let [distributerName,setdistributerName]=useState();
@@ -48,8 +48,9 @@ function InsertDistributer(){
             <label className='booking-label'>address</label>
             <input onChange={(val) => {setaddress(val.target.value)}} className='booking-inputbar' type="text" placeholder='enter distributer address' required />
             </div>
-                
-            <button className='button' type='submit' onClick={send}>Insert</button>
+
+            <Link to={"/distributer"} className="links"><button className='button' type='submit' onClick={send}>Insert</button></Link> 
+            
             
         </div>
     );

@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-
+import { Link } from "react-router-dom";
 function InsertCustomer(){
     let [customerId ,setcustomerId ]=useState();
     let [customerName,setcustomerName]=useState();
@@ -50,9 +50,8 @@ function InsertCustomer(){
                 
             
             </div>
-            <div>
-            <button className='button' type='submit' onClick={send}>Insert</button>
-            </div>
+            <Link to={"/customer"} className="links"><button className='button' type='submit' onClick={send}>Insert</button></Link>
+            
             
         </div>
     );

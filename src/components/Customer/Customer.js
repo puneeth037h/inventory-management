@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function Customer(){
     const [customersdata, setcustomersData] = useState([]);
+    let [result, setresult] = useState('')
 
     useEffect(() => {
         fetch('http://localhost:3000/customer')
@@ -16,6 +17,25 @@ function Customer(){
             });
             console.log(customersdata);
     }, []);
+    function del(customerIdToDelete) {
+        var data={
+            'customerId': customerIdToDelete
+        }
+        fetch('http://localhost:3000/deletecustomer', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            setresult(data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        //window.location.reload();
+    }
+    
 
     return (
         <div>
@@ -31,7 +51,9 @@ function Customer(){
                         <p>{elem.phone}</p>
                         <p>{elem.address}</p>
                         <Link to={`/updatecustomer/${elem.customerId}`}><button>edit</button></Link>
-                        <Link><button>delete</button></Link>
+                        <button onClick={() => {
+                            console.log(elem.customerId);
+                            del(elem.customerId)}}>delete</button>
                     </div>
                 );
             })}

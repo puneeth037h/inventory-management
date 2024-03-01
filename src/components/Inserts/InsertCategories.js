@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-
+import { Link } from "react-router-dom";
 function InsertCategories(){
     let [categoryId ,setcategoryId ]=useState();
     let [categoryName,setcategoryName]=useState();
@@ -38,9 +38,8 @@ function InsertCategories(){
                 
             
         </div>
-        <div>
-            <button className='button' type='submit' onClick={send}>Insert</button>
-        </div>
+        <Link to={"/categories"} className="links"><button className='button' type='submit' onClick={send}>Insert</button></Link>
+            
         </div>
         
     );
