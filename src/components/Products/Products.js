@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function Products(){
     const [productsdata, setproductsData] = useState([]);
+    let [result, setresult] = useState('')
 
     useEffect(() => {
         fetch('http://localhost:3000/products')
@@ -16,6 +17,21 @@ function Products(){
             });
             console.log(productsdata);
     }, []);
+    function del(productIdToDelete) {
+        fetch('http://localhost:3000/deleteproducts', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ productId: productIdToDelete })
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            setresult(data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        window.location.reload();
+    }
 
     return (
         <div>
@@ -35,7 +51,7 @@ function Products(){
                         <p>{elem.noOfProducts}</p>
                         <p>{elem.price}</p>
                         <Link to={`/updateproduct/${elem.productId}`}><button>edit</button></Link>
-                        <Link><button>delete</button></Link>
+                        <button onClick={() => del(elem.sellerId)}>delete</button>
                     </div>
                 );
             })}
