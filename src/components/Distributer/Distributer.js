@@ -16,6 +16,21 @@ function Distributer(){
             });
             console.log(distributersdata);
     }, []);
+    function del(distributerIdToDelete) {
+        fetch('http://localhost:3000/deletedistributer', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ distributerId: distributerIdToDelete })
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            setresult(data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        window.location.reload();
+    }
 
     return (
         <div>
@@ -30,7 +45,7 @@ function Distributer(){
                         <p>{elem.phone}</p>
                         <p>{elem.address}</p>
                         <Link to={`/updatedistributer/${elem.distributerId}`}><button>edit</button></Link>
-                        <Link><button>delete</button></Link>
+                        <button onClick={() => del(elem.distributerId)}>delete</button>
                     </div>
                 );
             })}
