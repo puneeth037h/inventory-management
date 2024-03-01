@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function Distributer(){
     const [distributersdata, setdistributersData] = useState([]);
+    let [result, setresult] = useState('');
 
     useEffect(() => {
         fetch('http://localhost:3000/distributer')
@@ -29,7 +30,7 @@ function Distributer(){
         .catch((error) => {
             console.error('Error:', error);
         });
-        window.location.reload();
+        //window.location.reload();
     }
 
     return (
