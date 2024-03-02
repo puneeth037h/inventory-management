@@ -1,61 +1,71 @@
-import { useEffect,useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
+import debounce from "lodash.debounce";
 
+function Home() {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [products, setProducts] = useState([]);
 
+    // Debounced search function
+    const debouncedSearch = useCallback(
+        debounce((searchValue) => search(searchValue), 500), []
+    );
 
-function Home(){
-    let[tosearch,settosearch]=useState('')
-    console.log(tosearch)
-    const [productsdata, setproductsData] = useState([]);
-    let [result, setresult] = useState('')
-    function search(){
-        var data = {'tosearch':tosearch
-            
-
+    useEffect(() => {
+        if (searchTerm) {
+            debouncedSearch(searchTerm);
         }
-        try{
+    }, [searchTerm, debouncedSearch]);
 
-            fetch('http://localhost:3000/search' ,
-            { method :'POST', headers:{'Content-Type' : 'application/json'} ,
-                body: JSON.stringify(data) }
-            )  .then((res) => res.json())
-             .then( (data) => { setproductsData(data)} )
-             .catch((error) => {
-                console.error('Error:', error);
-            });
-            console.log(productsdata);
-        }
-        catch (error){
-            console.log(error)
-        }
+    function search(term) {
+        fetch('http://localhost:3000/search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ searchTerm: term })
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return res.json();
+        })
+        .then(data => {
+            setProducts(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
-    return(
+    return (
         <div>
             <div>
-               <input onChange={(val)=>{settosearch(val.target.value); search();}} type="text" placeholder="enter something to search"></input>
+                <input
+                    type="text"
+                    placeholder="Enter something to search"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
             </div>
             <div>
-            {productsdata.map((elem, indx) => {
-                return (
-                    <div key={indx} className="categoriesList">
-                        <p>{elem.productId}</p>
-                        <p>{elem.productName}</p>
-                        <p>{elem.categoryId }</p>
-                        <p>{elem.sellerId }</p>
-                        <p>{elem.distributerId}</p>
-                        <p>{elem.description}</p>
-                        <p>{elem.noOfProducts}</p>
-                        <p>{elem.price}</p>
-                        <Link to={`/updateproduct/${elem.productId}`}><button>edit</button></Link>
-                      
+                {products.map(product => (
+                    <div key={product.productId} className="product">
+                        <p>Product ID: {product.productId}</p>
+                        <p>Name: {product.productName}</p>
+                        <p>Category ID: {product.categoryId}</p>
+                        <p>Seller ID: {product.sellerId}</p>
+                        <p>Distributor ID: {product.distributerId}</p>
+                        <p>Description: {product.description}</p>
+                        <p>No. of Products: {product.noOfProducts}</p>
+                        <p>Price: {product.price}</p>
+                        <Link to={`/updateproduct/${product.productId}`}>
+                            <button>Edit</button>
+                        </Link>
                     </div>
-                );
-            })}
+                ))}
             </div>
         </div>
-    
-    )
+    );
 }
 
 export default Home;
