@@ -38,7 +38,7 @@ function Products(){
             <div>
                 <Link to={"/insertproduct"}><button>insert new customer</button></Link>
             </div>
-            <div>
+            <div >
             {productsdata.map((elem, indx) => {
                 return (
                     <div key={indx} className="categoriesList">
