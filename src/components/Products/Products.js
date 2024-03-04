@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import debounce from "lodash.debounce";
 
 function Products(){
     const [productsdata, setproductsData] = useState([]);
     let [result, setresult] = useState('')
+    const [searchTerm, setSearchTerm] = useState('');
+  
 
     useEffect(() => {
         fetch('http://localhost:3000/products')
@@ -17,6 +20,36 @@ function Products(){
             });
             console.log(productsdata);
     }, []);
+    //debounced search function
+    const debouncedSearch = useCallback(
+        debounce((searchValue) => search(searchValue), 500), []
+    );
+
+    useEffect(() => {
+        if (searchTerm) {
+            debouncedSearch(searchTerm);
+        }
+    }, [searchTerm, debouncedSearch]);
+
+    function search(term) {
+        fetch('http://localhost:3000/search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ searchTerm: term })
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return res.json();
+        })
+        .then(data => {
+            setproductsData(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
     function del(productIdToDelete) {
         fetch('http://localhost:3000/deleteproducts', {
             method: 'POST',
@@ -36,11 +69,20 @@ function Products(){
     return (
         <div>
             <div>
+            <div>
+                <input
+                    type="text"
+                    placeholder="Enter something to search"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
                 <Link to={"/insertproduct"}><button>insert new customer</button></Link>
             </div>
             <div >
             {productsdata.map((elem, indx) => {
                 return (
+
                     <div key={indx} className="categoriesList">
                         <p>{elem.productId}</p>
                         <p>{elem.productName}</p>
@@ -51,7 +93,7 @@ function Products(){
                         <p>{elem.noOfProducts}</p>
                         <p>{elem.price}</p>
                         <Link to={`/updateproduct/${elem.productId}`}><button>edit</button></Link>
-                        <button onClick={() => del(elem.sellerId)}>delete</button>
+                        <button onClick={() => del(elem.productId)}>delete</button>
                     </div>
                 );
             })}
