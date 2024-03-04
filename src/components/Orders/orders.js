@@ -1,8 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useCallback } from "react";
 import { Link } from "react-router-dom";
+import debounce from "lodash.debounce";
 
 function Orders(){
     const [ordersdata, setordersData] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const debouncedSearch = useCallback(
+        debounce((searchValue) => search(searchValue), 500), []
+    );
+
+    useEffect(() => {
+        if (searchTerm) {
+            debouncedSearch(searchTerm);
+        }
+    }, [searchTerm, debouncedSearch]);
 
     useEffect(() => {
         fetch('http://localhost:3000/orders')
@@ -17,9 +29,37 @@ function Orders(){
             console.log(ordersdata);
     }, []);
 
+    function search(term) {
+        fetch('http://localhost:3000/searchorders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ searchTerm: term })
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return res.json();
+        })
+        .then(data => {
+            setordersData(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
     return (
         <div>
             <div>
+            <div>
+                <input
+                    type="text"
+                    placeholder="Enter something to search"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
                 <Link to={"/insertorder"} ><button>new order</button></Link>
             </div>
             {ordersdata.map((elem, indx) => {

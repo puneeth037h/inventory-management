@@ -1,9 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useCallback } from "react";
 import './Categories.css'
 import { Link } from "react-router-dom";
+import debounce from "lodash.debounce";
+
 function Categories() {
     const [categoriesdata, setCategoriesData] = useState([]);
     let [result, setresult] = useState('')
+    const [searchTerm, setSearchTerm] = useState('');
+
+
+    const debouncedSearch = useCallback(
+        debounce((searchValue) => search(searchValue), 500), []
+    );
+
+    useEffect(() => {
+        if (searchTerm) {
+            debouncedSearch(searchTerm);
+        }
+    }, [searchTerm, debouncedSearch]);
 
     useEffect(() => {
         fetch('http://localhost:3000/categories')
@@ -17,6 +31,26 @@ function Categories() {
             });
             console.log(categoriesdata);
     }, []);
+
+    function search(term) {
+        fetch('http://localhost:3000/searchcatgories', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ searchTerm: term })
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return res.json();
+        })
+        .then(data => {
+            setCategoriesData(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
     function del(categoryIdToDelete) {
         fetch('http://localhost:3000/deletecategory', {
             method: 'POST',
@@ -36,6 +70,14 @@ function Categories() {
     return (
         <div>
             <div>
+            <div>
+                <input
+                    type="text"
+                    placeholder="Enter something to search"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
                 <Link to={"/insertcategories"} className="links" ><button>insert new category</button></Link>
             </div>
             <div>

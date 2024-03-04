@@ -1,9 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useCallback } from "react";
 import { Link } from "react-router-dom";
+import debounce from "lodash.debounce";
 
 function Seller(){
     const [sellersdata, setsellersData] = useState([]);
     let [result, setresult] = useState('')
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const debouncedSearch = useCallback(
+        debounce((searchValue) => search(searchValue), 500), []
+    );
+
+    useEffect(() => {
+        if (searchTerm) {
+            debouncedSearch(searchTerm);
+        }
+    }, [searchTerm, debouncedSearch]);
+
     useEffect(() => {
         fetch('http://localhost:3000/seller')
             .then(res => res.json())
@@ -16,6 +29,26 @@ function Seller(){
             });
             console.log(sellersdata);
     }, []);
+
+    function search(term) {
+        fetch('http://localhost:3000/searchseller', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ searchTerm: term })
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return res.json();
+        })
+        .then(data => {
+            setsellersData(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
     function del(sellerIdToDelete) {
         fetch('http://localhost:3000/deleteseller', {
             method: 'POST',
@@ -34,6 +67,14 @@ function Seller(){
     return (
         <div>
             <div>
+            <div>
+                <input
+                    type="text"
+                    placeholder="Enter something to search"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
                 <Link to={"/insertseller"} ><button>insert new seller</button></Link>
             </div>
             <div>

@@ -1,9 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useCallback } from "react";
 import { Link } from "react-router-dom";
+import debounce from "lodash.debounce";
 
 function Customer(){
     const [customersdata, setcustomersData] = useState([]);
     let [result, setresult] = useState('')
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const debouncedSearch = useCallback(
+        debounce((searchValue) => search(searchValue), 500), []
+    );
+
+    useEffect(() => {
+        if (searchTerm) {
+            debouncedSearch(searchTerm);
+        }
+    }, [searchTerm, debouncedSearch]);
 
     useEffect(() => {
         fetch('http://localhost:3000/customer')
@@ -17,6 +29,26 @@ function Customer(){
             });
             console.log(customersdata);
     }, []);
+
+    function search(term) {
+        fetch('http://localhost:3000/searchcustomer', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ searchTerm: term })
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return res.json();
+        })
+        .then(data => {
+            setcustomersData(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
     function del(customerIdToDelete) {
         var data={
             'customerId': customerIdToDelete
@@ -40,6 +72,14 @@ function Customer(){
     return (
         <div>
             <div>
+            <div>
+                <input
+                    type="text"
+                    placeholder="Enter something to search"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
                 <Link to={"/insertcustomer"}><button>insert new customer</button></Link>
             </div>
             <div>
