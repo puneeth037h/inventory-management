@@ -1,12 +1,23 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
+
 
 function Products(){
     const [productsdata, setproductsData] = useState([]);
     let [result, setresult] = useState('')
     const [searchTerm, setSearchTerm] = useState('');
   
+     // Debounced search function
+     const debouncedSearch = useCallback(
+        debounce((searchValue) => search(searchValue), 500), []
+    );
+
+    useEffect(() => {
+        if (searchTerm) {
+            debouncedSearch(searchTerm);
+        }
+    }, [searchTerm, debouncedSearch]);
 
     useEffect(() => {
         fetch('http://localhost:3000/products')
@@ -20,16 +31,6 @@ function Products(){
             });
             console.log(productsdata);
     }, []);
-    //debounced search function
-    const debouncedSearch = useCallback(
-        debounce((searchValue) => search(searchValue), 500), []
-    );
-
-    useEffect(() => {
-        if (searchTerm) {
-            debouncedSearch(searchTerm);
-        }
-    }, [searchTerm, debouncedSearch]);
 
     function search(term) {
         fetch('http://localhost:3000/search', {
