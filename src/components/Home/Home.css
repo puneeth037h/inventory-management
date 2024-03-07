@@ -13,3 +13,29 @@
 .searchbar:focus{
     outline: none;
 }
+.category_icon{
+    background-color: #F1795Cff;
+    height: 120px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.category_icon>img{
+    height: 50px;
+}
+.cat_no_container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    width: 160px;
+    margin: 5px;
+    padding-right: 3px;
+}
+.cat_no>p{
+    margin-top: -20px;
+}
+.home_container{
+    background-color:#EEF2F5ff;;
+}
