@@ -66,15 +66,14 @@ function Seller(){
     }
     return (
         <div>
-            <div>
-            <div>
+            <div className="cat_nav">
                 <input
                     type="text"
+                    className="searchbar"
                     placeholder="Enter something to search"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-            </div>
                 <Link to={"/insertseller"} ><button>insert new seller</button></Link>
             </div>
             <div>

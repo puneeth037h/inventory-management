@@ -71,15 +71,14 @@ function Customer(){
 
     return (
         <div>
-            <div>
-            <div>
+            <div className="cat_nav">
                 <input
                     type="text"
+                    className="searchbar"
                     placeholder="Enter something to search"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-            </div>
                 <Link to={"/insertcustomer"}><button>insert new customer</button></Link>
             </div>
             <div>

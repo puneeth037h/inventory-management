@@ -2,7 +2,7 @@ import { useState, useEffect,useCallback } from "react";
 import './Categories.css'
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
-
+import addcategories from "../icons/more.png"
 function Categories() {
     const [categoriesdata, setCategoriesData] = useState([]);
     let [result, setresult] = useState('')
@@ -68,17 +68,16 @@ function Categories() {
     }
 
     return (
-        <div>
-            <div>
-            <div>
+        <div className="cat_container">
+            <div className="cat_nav">
                 <input
                     type="text"
+                    className="searchbar"
                     placeholder="Enter something to search"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-            </div>
-                <Link to={"/insertcategories"} className="links" ><button>insert new category</button></Link>
+                <Link to={"/insertcategories"} className="" ><img src={addcategories} className="addicon" alt="" /></Link>
             </div>
             <div>
             {categoriesdata.map((elem, indx) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
-
+import "./Products.css"
 
 function Products(){
     const [productsdata, setproductsData] = useState([]);
@@ -68,16 +68,15 @@ function Products(){
     }
 
     return (
-        <div>
-            <div>
-            <div>
+        <div className="product_container">
+            <div className="product_nav">
                 <input
                     type="text"
+                    className="searchbar"
                     placeholder="Enter something to search"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-            </div>
                 <Link to={"/insertproduct"}><button>insert new customer</button></Link>
             </div>
             <div >

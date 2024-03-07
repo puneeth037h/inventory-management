@@ -51,15 +51,14 @@ function Orders(){
 
     return (
         <div>
-            <div>
-            <div>
+            <div className="cat_nav">
                 <input
                     type="text"
+                    className="searchbar"
                     placeholder="Enter something to search"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-            </div>
                 <Link to={"/insertorder"} ><button>new order</button></Link>
             </div>
             {ordersdata.map((elem, indx) => {

@@ -67,15 +67,14 @@ function Distributer(){
 
     return (
         <div>
-            <div>
-            <div>
+            <div className="cat_nav">
                 <input
                     type="text"
+                    className="searchbar"
                     placeholder="Enter something to search"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-            </div>
                 <Link to={"/insertdistributer"}><button>insert new distributer</button></Link>
             </div>
             {distributersdata.map((elem, indx) => {

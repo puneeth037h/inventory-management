@@ -1,5 +1,16 @@
 .nav>h1{
     margin: 0px 0px 50px 0px;
+    background-color: #DA3337ff;
+    color: #FEFEFEff;
+    border-radius: 0px 0px 5px 5px;
+  }
+  .icon{
+    height: 25px;
+    margin-left: 5px;
+  }
+  .sicon{
+    height: 27px;
+    margin-left: 5px;
   }
   .nav > button{
     border: none;
@@ -9,23 +20,27 @@
     width: 200px;
     
   }
+  
   .links>button:hover{
     color:rgba(84, 137, 162, 0.621);
   }
   .links>button{
     border: none;
+    text-align: left;
     font-size: 30px;
     background-color: transparent;
     margin: 10px;
     width: 200px;
-    color:#4D34CCff ;
+    color:white;
     
   }
   .nav{
-    background-color: #FFFEFFff;
+    background-color:#262825ff;;
     color:#4D34CCff;
-
-    
+    position: fixed;
+    height: 100vh;
+    width: 280px;
+    margin-top: -50px;
   }
   .links{
     color:#4D34CCff ;

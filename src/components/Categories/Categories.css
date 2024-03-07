@@ -6,3 +6,17 @@
     width: 150px;
     margin: 0px;
 }
+.cat_nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.cat_container{
+    width: 60vw;
+    margin: 5px;
+}
+.addicon{
+    margin-top: 20px;
+    height: 35px;
+}

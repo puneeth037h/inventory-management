@@ -1,0 +1,14 @@
+.searchbar{ 
+    width: 500px;
+    align-self: flex-start;
+    border: solid 1px rgb(195, 237, 181) ;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+    height: 25px;
+    color: gray;
+    background-color:  #DCEED6ff;
+}
+.searchbar:focus{
+    outline: none;
+}
