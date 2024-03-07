@@ -1,7 +1,9 @@
 import { useState, useEffect,useCallback } from "react";
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
-
+import add from "../icons/duplicate.png";
+import edit from "../icons/edit (1).png";
+import delicon from "../icons/bin.png";
 function Customer(){
     const [customersdata, setcustomersData] = useState([]);
     let [result, setresult] = useState('')
@@ -79,9 +81,15 @@ function Customer(){
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <Link to={"/insertcustomer"}><button>insert new customer</button></Link>
+                <Link to={"/insertcustomer"} className="insert"><img src={add} className="addicon" alt="" /><p>insert</p></Link>
             </div>
             <div>
+                <div className="categoriesList">
+                    <p>customerId</p>
+                    <p>customerName</p>
+                    <p>phone</p>
+                    <p>address</p>
+                </div>
             {customersdata.map((elem, indx) => {
                 return (
                     <div key={indx} className="categoriesList">
@@ -89,10 +97,10 @@ function Customer(){
                         <p>{elem.customerName}</p>
                         <p>{elem.phone}</p>
                         <p>{elem.address}</p>
-                        <Link to={`/updatecustomer/${elem.customerId}`}><button>edit</button></Link>
+                        <Link to={`/updatecustomer/${elem.customerId}`}className="insert"><img src={edit} alt="" className="editicon" /><p>edit</p></Link>
                         <button onClick={() => {
                             console.log(elem.customerId);
-                            del(elem.customerId)}}>delete</button>
+                            del(elem.customerId)}}className="deleteicon"><img src={delicon} alt="" className="editicon"/></button>
                     </div>
                 );
             })}

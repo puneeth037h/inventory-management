@@ -2,7 +2,9 @@ import { useState, useEffect,useCallback } from "react";
 import './Categories.css'
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
-import addcategories from "../icons/more.png"
+import add from "../icons/duplicate.png";
+import edit from "../icons/edit (1).png";
+import delicon from "../icons/bin.png";
 function Categories() {
     const [categoriesdata, setCategoriesData] = useState([]);
     let [result, setresult] = useState('')
@@ -77,16 +79,20 @@ function Categories() {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <Link to={"/insertcategories"} className="" ><img src={addcategories} className="addicon" alt="" /></Link>
+                <Link to={"/insertcategories"} className="insert" ><img src={add} className="addicon" alt="" /><p>insert</p></Link>
             </div>
             <div>
+                <div className="categoriesList">
+                    <p>category Name</p>
+                    <p>categoryId</p>
+                </div>
             {categoriesdata.map((elem, indx) => {
                 return (
                     <div key={indx} className="categoriesList">
                         <p>{elem.categoryName}</p>
                         <p>{elem.categoryId}</p>
-                        <Link to={`/updatecategories/${elem.categoryId}`}><button>edit</button></Link>
-                        <button onClick={() => del(elem.categoryId)}>delete</button>
+                        <Link to={`/updatecategories/${elem.categoryId}`} className="insert"><img src={edit} alt="" className="editicon" /><p>edit</p></Link>
+                        <button onClick={() => del(elem.categoryId)} className="deleteicon"><img src={delicon} alt="" className="editicon"/></button>
                     </div>
                 );
             })}

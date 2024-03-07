@@ -1,7 +1,9 @@
 import { useState, useEffect,useCallback } from "react";
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
-
+import add from "../icons/duplicate.png";
+import edit from "../icons/edit (1).png";
+import delicon from "../icons/bin.png";
 function Seller(){
     const [sellersdata, setsellersData] = useState([]);
     let [result, setresult] = useState('')
@@ -74,9 +76,15 @@ function Seller(){
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <Link to={"/insertseller"} ><button>insert new seller</button></Link>
+                <Link to={"/insertseller"} className="insert" ><img src={add} className="addicon" alt="" /><p>insert</p></Link>
             </div>
             <div>
+            <div className="categoriesList">
+                    <p>sellerId</p>
+                    <p>sellerName</p>
+                    <p>phone</p>
+                    <p>address</p>
+                </div>
             {sellersdata.map((elem, indx) => {
                 return (
                     <div key={indx} className="categoriesList">
@@ -84,8 +92,8 @@ function Seller(){
                         <p>{elem.sellerName}</p>
                         <p>{elem.phone}</p>
                         <p>{elem.address}</p>
-                        <Link to={`/updateseller/${elem.sellerId}`}><button>edit</button></Link>
-                        <button onClick={() => del(elem.sellerId)}>delete</button>
+                        <Link to={`/updateseller/${elem.sellerId}`}className="insert"><img src={edit} alt="" className="editicon" /><p>edit</p></Link>
+                        <button onClick={() => del(elem.sellerId)}className="deleteicon"><img src={delicon} alt="" className="editicon"/></button>
                     </div>
                 );
             })}

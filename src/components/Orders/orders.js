@@ -1,7 +1,9 @@
 import { useState, useEffect,useCallback } from "react";
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
-
+import add from "../icons/duplicate.png";
+import edit from "../icons/edit (1).png";
+import delicon from "../icons/bin.png";
 function Orders(){
     const [ordersdata, setordersData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -59,8 +61,14 @@ function Orders(){
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <Link to={"/insertorder"} ><button>new order</button></Link>
+                <Link to={"/insertorder"} className="insert" ><img src={add} className="addicon" alt="" /><p>insert</p></Link>
             </div>
+            <div className="categoriesList">
+                    <p>orderId</p>
+                    <p>productName</p>
+                    <p>customerName</p>
+                    <p>purchaseDate</p>
+                </div>
             {ordersdata.map((elem, indx) => {
                 return (
                     <div key={indx} className="categoriesList">
@@ -68,8 +76,8 @@ function Orders(){
                         <p>{elem.productName}</p>
                         <p>{elem.customerName }</p>
                         <p>{elem.purchaseDate}</p>
-                        <Link to={`/updateorders/${elem.orderId}`}><button>edit</button></Link>
-                        <Link><button>delete</button></Link>
+                        <Link to={`/updateorders/${elem.orderId}`} className="insert"><img src={edit} alt="" className="editicon" /><p>edit</p></Link>
+                        <button className="deleteicon"><img src={delicon} alt="" className="editicon"/></button>
                     </div>
                 );
             })}

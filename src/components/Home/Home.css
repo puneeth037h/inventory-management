@@ -6,7 +6,8 @@
     border-radius: 10px;
     margin-top: 20px;
     height: 25px;
-    color: gray;
+    color:black;
+    font-size: 15px;
     background-color:  #DCEED6ff;
 }
 .searchbar:focus{

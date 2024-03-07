@@ -1,7 +1,9 @@
 import { useState, useEffect,useCallback } from "react";
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
-
+import add from "../icons/duplicate.png";
+import edit from "../icons/edit (1).png";
+import delicon from "../icons/bin.png";
 function Distributer(){
     const [distributersdata, setdistributersData] = useState([]);
     let [result, setresult] = useState('');
@@ -75,8 +77,14 @@ function Distributer(){
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <Link to={"/insertdistributer"}><button>insert new distributer</button></Link>
+                <Link to={"/insertdistributer"} className="insert" ><img src={add} className="addicon" alt="" /><p>insert</p></Link>
             </div>
+            <div className="categoriesList">
+                    <p>distributerId</p>
+                    <p>distributerName</p>
+                    <p>phone</p>
+                    <p>address</p>
+                </div>
             {distributersdata.map((elem, indx) => {
                 return (
                     <div key={indx} className="categoriesList">
@@ -84,8 +92,8 @@ function Distributer(){
                         <p>{elem.distributerName}</p>
                         <p>{elem.phone}</p>
                         <p>{elem.address}</p>
-                        <Link to={`/updatedistributer/${elem.distributerId}`}><button>edit</button></Link>
-                        <button onClick={() => del(elem.distributerId)}>delete</button>
+                        <Link to={`/updatedistributer/${elem.distributerId}`}className="insert"><img src={edit} alt="" className="editicon" /><p>edit</p></Link>
+                        <button onClick={() => del(elem.distributerId)}className="deleteicon"><img src={delicon} alt="" className="editicon"/></button>
                     </div>
                 );
             })}

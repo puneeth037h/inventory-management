@@ -2,7 +2,9 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
 import "./Products.css"
-
+import add from "../icons/duplicate.png";
+import edit from "../icons/edit (1).png";
+import delicon from "../icons/bin.png";
 function Products(){
     const [productsdata, setproductsData] = useState([]);
     let [result, setresult] = useState('')
@@ -77,9 +79,19 @@ function Products(){
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <Link to={"/insertproduct"}><button>insert new customer</button></Link>
+                <Link to={"/insertproduct"} className="insert" ><img src={add} className="addicon" alt="" /><p>insert</p></Link>
             </div>
             <div >
+            <div className="categoriesList">
+                    <p>productId</p>
+                    <p>productName</p>
+                    <p>categoryId</p>
+                    <p>sellerId</p>
+                    <p>distributerId</p>
+                    <p>description</p>
+                    <p>noOfProducts</p>
+                    <p>price</p>
+                </div>
             {productsdata.map((elem, indx) => {
                 return (
 
@@ -92,8 +104,8 @@ function Products(){
                         <p>{elem.description}</p>
                         <p>{elem.noOfProducts}</p>
                         <p>{elem.price}</p>
-                        <Link to={`/updateproduct/${elem.productId}`}><button>edit</button></Link>
-                        <button onClick={() => del(elem.productId)}>delete</button>
+                        <Link to={`/updateproduct/${elem.productId}`}className="insert"><img src={edit} alt="" className="editicon" /><p>edit</p></Link>
+                        <button onClick={() => del(elem.productId)}className="deleteicon"><img src={delicon} alt="" className="editicon"/></button>
                     </div>
                 );
             })}

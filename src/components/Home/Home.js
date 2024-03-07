@@ -39,7 +39,7 @@ function Home() {
 
     return (
         <div>
-            <div>
+            <div className="cat_nav">
                 <input
                     type="text"
                     className="searchbar"
@@ -49,16 +49,26 @@ function Home() {
                 />
             </div>
             <div>
+                <div className="categoriesList">
+                    <p>productId</p>
+                    <p>categoryName</p>
+                    <p>categoryId</p>
+                    <p>sellerId</p>
+                    <p>distributerId</p>
+                    <p>description</p>
+                    <p>noOfProducts</p>
+                    <p>price</p>
+                </div>
                 {products.map(product => (
-                    <div key={product.productId} className="product">
-                        <p>Product ID: {product.productId}</p>
-                        <p>Name: {product.productName}</p>
-                        <p>Category ID: {product.categoryId}</p>
-                        <p>Seller ID: {product.sellerId}</p>
-                        <p>Distributor ID: {product.distributerId}</p>
-                        <p>Description: {product.description}</p>
-                        <p>No. of Products: {product.noOfProducts}</p>
-                        <p>Price: {product.price}</p>
+                    <div key={product.productId} className="categoriesList">
+                        <p>{product.productId}</p>
+                        <p>{product.productName}</p>
+                        <p>{product.categoryId}</p>
+                        <p>{product.sellerId}</p>
+                        <p>{product.distributerId}</p>
+                        <p>{product.description}</p>
+                        <p>{product.noOfProducts}</p>
+                        <p>{product.price}</p>
                         <Link to={`/updateproduct/${product.productId}`}>
                             <button>Edit</button>
                         </Link>
