@@ -2,10 +2,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
 import "./Home.css";
+import edit from "../icons/edit (1).png";
+import delicon from "../icons/bin.png";
 import categoryicon from "../icons/category.png"
 function Home() {
     const [searchTerm, setSearchTerm] = useState('');
     const [products, setProducts] = useState([]);
+    let [result, setresult] = useState('');
     let [categorynumber,setcategorynumber]=useState([]);
 
     useEffect(() => {
@@ -50,7 +53,21 @@ function Home() {
             console.error('Error:', error);
         });
     }
-
+    function del(productIdToDelete) {
+        fetch('http://localhost:3000/deleteproducts', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ productId: productIdToDelete })
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            setresult(data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        window.location.reload();
+    }
     return (
         <div className="home_container">
             <div className="cat_nav">
@@ -94,9 +111,8 @@ function Home() {
                         <p>{product.distributerId}</p>
                         <p>{product.noOfProducts}</p>
                         <p>{product.price}</p>
-                        <Link to={`/updateproduct/${product.productId}`}>
-                            <button>Edit</button>
-                        </Link>
+                        <Link to={`/updateproduct/${product.productId}`}className="insert"><img src={edit} alt="" className="editicon" /><p>edit</p></Link>
+                        <button onClick={() => del(product.productId)}className="deleteicon"><img src={delicon} alt="" className="editicon"/></button>
                     </div>
                 ))}
             </div>

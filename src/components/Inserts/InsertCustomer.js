@@ -8,6 +8,10 @@ function InsertCustomer(){
 
     let [result, setresult] = useState('')
     function send(){
+        if (!customerId || !customerName || !phone || !address) {
+            alert('Please fill in all the fields');
+            return; // Exit the function if any field is empty
+        }
         var data = {
             'customerId':customerId,
             'customerName':customerName,
@@ -50,7 +54,7 @@ function InsertCustomer(){
                 
             
             </div>
-            <Link to={"/customer"} className="links"><button className='button' type='submit' onClick={send}>Insert</button></Link>
+            <Link to={"/customer"} className=""><button className='button' type='submit' onClick={send}>Insert</button></Link>
             
             
         </div>

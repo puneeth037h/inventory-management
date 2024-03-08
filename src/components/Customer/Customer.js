@@ -67,7 +67,7 @@ function Customer(){
         .catch((error) => {
             console.error('Error:', error);
         });
-        //window.location.reload();
+        window.location.reload();
     }
     
 

@@ -1,0 +1,70 @@
+/* InsertCategories.css */
+.insert-categories-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: transparent; /* Transparent background */
+    border-radius: 8px;
+}
+
+.input-fields {
+    margin-bottom: 20px;
+    display: flex; /* Use flexbox */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+}
+
+.booking-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #006d5b; /* Dark green text */
+}
+
+.booking-inputbar {
+    flex: 1; /* Take up equal space */
+    padding: 15px;
+    font-size: 18px; /* Larger font size */
+    border: none; /* No border */
+    border-bottom: 2px solid #007c6c; /* Green underline */
+    background-color: transparent; /* Transparent background */
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    transition: border-bottom-color 0.3s ease;
+}
+
+.booking-inputbar:focus {
+    border-bottom-color: #008c76; /* Darker green underline when focused */
+    outline: none;
+}
+
+.button {
+    width: 100%;
+    padding: 15px;
+    background-color: #008c76; /* Darker green button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #007c6c; /* Darker green on hover */
+}
+
+.links {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #006d5b; /* Dark green link color */
+}
+
+.links:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: #ff0000;
+    margin-bottom: 10px;
+}

@@ -6,6 +6,7 @@ import edit from "../icons/edit (1).png";
 import delicon from "../icons/bin.png";
 function Orders(){
     const [ordersdata, setordersData] = useState([]);
+    let [result, setresult] = useState('')
     const [searchTerm, setSearchTerm] = useState('');
 
     const debouncedSearch = useCallback(
@@ -50,6 +51,21 @@ function Orders(){
             console.error('Error:', error);
         });
     }
+    function del(ordersIdToDelete) {
+        fetch('http://localhost:3000/deleteorders', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ ordersId:ordersIdToDelete })
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            setresult(data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        window.location.reload();
+    }
 
     return (
         <div>
@@ -77,7 +93,7 @@ function Orders(){
                         <p>{elem.customerName }</p>
                         <p>{elem.purchaseDate}</p>
                         <Link to={`/updateorders/${elem.orderId}`} className="insert"><img src={edit} alt="" className="editicon" /><p>edit</p></Link>
-                        <button className="deleteicon"><img src={delicon} alt="" className="editicon"/></button>
+                        <button onClick={() => del(elem.orderId)} className="deleteicon"><img src={delicon} alt="" className="editicon"/></button>
                     </div>
                 );
             })}
