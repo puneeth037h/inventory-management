@@ -9,6 +9,10 @@ function UpdateOrder(){
 
     let [result, setresult] = useState('')
     function send(){
+        if (!productId || !customerId || !purchaseDate) {
+            alert('Please fill in all the fields');
+            return; // Exit the function if any field is empty
+       }
         var data = {
             'orderId':orderId,
             'productId':productId ,

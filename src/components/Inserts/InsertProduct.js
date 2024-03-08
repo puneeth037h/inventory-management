@@ -12,6 +12,10 @@ function InsertProduct(){
 
     let [result, setresult] = useState('')
     function send(){
+        if (!productId || !productName || !categoryId || !sellerId || !distributerId || !description || !noOfProducts || !price) {
+            alert('Please fill in all the fields');
+            return; // Exit the function if any field is empty
+        }
         var data = {
             'productId':productId,
             'productName':productName,

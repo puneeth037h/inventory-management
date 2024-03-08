@@ -7,6 +7,10 @@ function UpdateCategories(){
     let [categoryName,setcategoryName]=useState();
     let [result, setresult] = useState('')
     function send(){
+        if (!categoryName) {
+            alert('Please enter a category name');
+            return; // Exit the function if categoryName is empty
+        }
         var data = {
             'categoryName':categoryName,
             'categoryId':categoryId 

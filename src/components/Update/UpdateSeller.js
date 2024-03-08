@@ -10,6 +10,10 @@ function UpdateSeller(){
 
     let [result, setresult] = useState('')
     function send(){
+        if ( !sellerName || !phone || !address) {
+            alert('Please fill in all the fields');
+            return; // Exit the function if any field is empty
+        }
         var data = {
             'sellerId':sellerId,
             'sellerName':sellerName,

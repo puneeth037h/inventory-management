@@ -9,6 +9,10 @@ function UpdateDistributer(){
 
     let [result, setresult] = useState('')
     function send(){
+        if ( !distributerName || !phone || !address) {
+            alert("Please fill in all the fields");
+            return; // Exit the function if any field is empty
+        }
         var data = {
             'distributerId':distributerId,
             'distributerName':distributerName,
