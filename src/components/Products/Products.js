@@ -88,7 +88,6 @@ function Products(){
                     <p>categoryId</p>
                     <p>sellerId</p>
                     <p>distributerId</p>
-                    <p>description</p>
                     <p>noOfProducts</p>
                     <p>price</p>
                 </div>
@@ -101,7 +100,6 @@ function Products(){
                         <p>{elem.categoryId }</p>
                         <p>{elem.sellerId }</p>
                         <p>{elem.distributerId}</p>
-                        <p>{elem.description}</p>
                         <p>{elem.noOfProducts}</p>
                         <p>{elem.price}</p>
                         <Link to={`/updateproduct/${elem.productId}`}className="insert"><img src={edit} alt="" className="editicon" /><p>edit</p></Link>
