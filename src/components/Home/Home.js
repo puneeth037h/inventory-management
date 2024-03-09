@@ -4,13 +4,18 @@ import debounce from "lodash.debounce";
 import "./Home.css";
 import edit from "../icons/edit (1).png";
 import delicon from "../icons/bin.png";
-import categoryicon from "../icons/category.png"
+import categoryicon from "../icons/category.png";
+import customer from "../icons/user.png";
+import producticon from "../icons/grocery-store.png";
+import ordericon from "../icons/booking (3).png";
 function Home() {
     const [searchTerm, setSearchTerm] = useState('');
     const [products, setProducts] = useState([]);
     let [result, setresult] = useState('');
     let [categorynumber,setcategorynumber]=useState([]);
-
+    let [customernumber,setcustomernumber]=useState([]);
+    let [productnumber,setproductnumber]=useState([]);
+    let [ordernumber,setordernumber]=useState([]);
     useEffect(() => {
         fetch('http://localhost:3000/categorynumber')
             .then(res => res.json())
@@ -22,6 +27,42 @@ function Home() {
                 console.error('Error fetching categories:', error);
             });
             console.log(categorynumber);
+    }, []);
+    useEffect(() => {
+        fetch('http://localhost:3000/customernumber')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setcustomernumber(data);
+            })
+            .catch(error => {
+                console.error('Error fetching categories:', error);
+            });
+            console.log(customernumber);
+    }, []);
+    useEffect(() => {
+        fetch('http://localhost:3000/productnumber')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setproductnumber(data);
+            })
+            .catch(error => {
+                console.error('Error fetching categories:', error);
+            });
+            console.log(productnumber);
+    }, []);
+    useEffect(() => {
+        fetch('http://localhost:3000/ordernumber')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setordernumber(data);
+            })
+            .catch(error => {
+                console.error('Error fetching categories:', error);
+            });
+            console.log(ordernumber);
     }, []);
     // Debounced search function
     const debouncedSearch = useCallback(
@@ -80,6 +121,7 @@ function Home() {
                 />
             </div>
             <div>
+                <div className="number_container">
                 {categorynumber.map((elem,index)=>{
                     return(
                         <div className="cat_no_container">
@@ -93,9 +135,49 @@ function Home() {
                         </div>
                     );
                 })}
+                {customernumber.map((elem,index)=>{
+                    return(
+                        <div className="cat_no_container">
+                            <div className="category_icon">
+                                <img src={customer} alt="" />
+                            </div>
+                            <div className="cat_no">
+                            <h1>{elem.noOfCustomer}</h1>
+                            <p>customer</p>
+                            </div>
+                        </div>
+                    );
+                })}
+                {productnumber.map((elem,index)=>{
+                    return(
+                        <div className="cat_no_container">
+                            <div className="category_icon">
+                                <img src={producticon} alt="" />
+                            </div>
+                            <div className="cat_no">
+                            <h1>{elem.noOfProducts}</h1>
+                            <p>products</p>
+                            </div>
+                        </div>
+                    );
+                })}
+                {ordernumber.map((elem,index)=>{
+                    return(
+                        <div className="cat_no_container">
+                            <div className="category_icon">
+                                <img src={ordericon} alt="" />
+                            </div>
+                            <div className="cat_no">
+                            <h1>{elem.noOforders}</h1>
+                            <p>orders</p>
+                            </div>
+                        </div>
+                    );
+                })}
+                </div>
                 <div className="categoriesList">
                     <p>productId</p>
-                    <p>categoryName</p>
+                    <p>productName</p>
                     <p>categoryId</p>
                     <p>sellerId</p>
                     <p>distributerId</p>

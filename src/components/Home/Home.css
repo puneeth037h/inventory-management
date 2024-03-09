@@ -29,7 +29,7 @@
     justify-content: space-around;
     align-items: center;
     background-color: white;
-    width: 160px;
+    width: 180px;
     margin: 5px;
     padding-right: 3px;
 }
@@ -38,4 +38,9 @@
 }
 .home_container{
     background-color:#EEF2F5ff;;
+}
+.number_container{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
 }
