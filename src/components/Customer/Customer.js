@@ -20,7 +20,7 @@ function Customer(){
     }, [searchTerm, debouncedSearch]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/customer')
+        fetch('https://inventory-management-backend-9e9o.onrender.com/customer')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -33,10 +33,12 @@ function Customer(){
     }, []);
 
     function search(term) {
-        fetch('http://localhost:3000/searchcustomer', {
+        console.log(JSON.stringify({ searchTerm: term }));
+        fetch('https://inventory-management-backend-9e9o.onrender.com/searchcustomer', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ searchTerm: term })
+            body: JSON.stringify({ searchTerm: term }),
+        
         })
         .then(res => {
             if (!res.ok) {
@@ -55,7 +57,7 @@ function Customer(){
         var data={
             'customerId': customerIdToDelete
         }
-        fetch('http://localhost:3000/deletecustomer', {
+        fetch('https://inventory-management-backend-9e9o.onrender.com/deletecustomer', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)

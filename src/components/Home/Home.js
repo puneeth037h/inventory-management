@@ -17,7 +17,7 @@ function Home() {
     let [productnumber,setproductnumber]=useState([]);
     let [ordernumber,setordernumber]=useState([]);
     useEffect(() => {
-        fetch('http://localhost:3000/categorynumber')
+        fetch('https://inventory-management-backend-9e9o.onrender.com/categorynumber')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -29,7 +29,7 @@ function Home() {
             console.log(categorynumber);
     }, []);
     useEffect(() => {
-        fetch('http://localhost:3000/customernumber')
+        fetch('https://inventory-management-backend-9e9o.onrender.com/customernumber')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -41,7 +41,7 @@ function Home() {
             console.log(customernumber);
     }, []);
     useEffect(() => {
-        fetch('http://localhost:3000/productnumber')
+        fetch('https://inventory-management-backend-9e9o.onrender.com/productnumber')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -53,7 +53,7 @@ function Home() {
             console.log(productnumber);
     }, []);
     useEffect(() => {
-        fetch('http://localhost:3000/ordernumber')
+        fetch('https://inventory-management-backend-9e9o.onrender.com/ordernumber')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -76,7 +76,7 @@ function Home() {
     }, [searchTerm, debouncedSearch]);
 
     function search(term) {
-        fetch('http://localhost:3000/search', {
+        fetch('https://inventory-management-backend-9e9o.onrender.com/search', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ searchTerm: term })
@@ -95,7 +95,7 @@ function Home() {
         });
     }
     function del(productIdToDelete) {
-        fetch('http://localhost:3000/deleteproducts', {
+        fetch('https://inventory-management-backend-9e9o.onrender.com/deleteproducts', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ productId: productIdToDelete })

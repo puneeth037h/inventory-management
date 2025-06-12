@@ -23,7 +23,7 @@ function UpdateDistributer(){
 
         try{
 
-            fetch('http://localhost:3000/updatedistributer' ,
+            fetch('https://inventory-management-backend-9e9o.onrender.com/updatedistributer' ,
             { method :'POST', headers:{'Content-Type' : 'application/json'} ,
                 body: JSON.stringify(data) }
             )  .then((res) => res.json())

@@ -23,7 +23,7 @@ function UpdateCustomer(){
 
         try{
 
-            fetch('http://localhost:3000/updatecustomer' ,
+            fetch('https://inventory-management-backend-9e9o.onrender.com/updatecustomer' ,
             { method :'POST', headers:{'Content-Type' : 'application/json'} ,
                 body: JSON.stringify(data) }
             )  .then((res) => res.json())

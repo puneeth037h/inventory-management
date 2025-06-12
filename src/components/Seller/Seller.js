@@ -20,7 +20,7 @@ function Seller(){
     }, [searchTerm, debouncedSearch]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/seller')
+        fetch('https://inventory-management-backend-9e9o.onrender.com/seller')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -33,7 +33,7 @@ function Seller(){
     }, []);
 
     function search(term) {
-        fetch('http://localhost:3000/searchseller', {
+        fetch('https://inventory-management-backend-9e9o.onrender.com/searchseller', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ searchTerm: term })
@@ -52,7 +52,7 @@ function Seller(){
         });
     }
     function del(sellerIdToDelete) {
-        fetch('http://localhost:3000/deleteseller', {
+        fetch('https://inventory-management-backend-9e9o.onrender.com/deleteseller', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ sellerId: sellerIdToDelete })

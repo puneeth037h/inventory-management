@@ -18,7 +18,7 @@ function UpdateCategories(){
 
         try{
 
-            fetch('http://localhost:3000/updatecategory' ,
+            fetch('https://inventory-management-backend-9e9o.onrender.com/updatecategory' ,
             { method :'POST', headers:{'Content-Type' : 'application/json'} ,
                 body: JSON.stringify(data) }
             )  .then((res) => res.json())

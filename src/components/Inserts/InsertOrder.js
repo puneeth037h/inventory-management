@@ -23,7 +23,7 @@ function InsertOrder(){
 
         try{
 
-            fetch('http://localhost:3000/insertorder' ,
+            fetch('https://inventory-management-backend-9e9o.onrender.com/insertorder' ,
             { method :'POST', headers:{'Content-Type' : 'application/json'} ,
                 body: JSON.stringify(data) }
             )  .then((res) => res.json())

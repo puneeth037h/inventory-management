@@ -20,7 +20,7 @@ function Distributer(){
     }, [searchTerm, debouncedSearch]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/distributer')
+        fetch('https://inventory-management-backend-9e9o.onrender.com/distributer')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -33,7 +33,7 @@ function Distributer(){
     }, []);
 
     function search(term) {
-        fetch('http://localhost:3000/searchdistributer', {
+        fetch('https://inventory-management-backend-9e9o.onrender.com/searchdistributer', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ searchTerm: term })
@@ -52,7 +52,7 @@ function Distributer(){
         });
     }
     function del(distributerIdToDelete) {
-        fetch('http://localhost:3000/deletedistributer', {
+        fetch('https://inventory-management-backend-9e9o.onrender.com/deletedistributer', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ distributerId: distributerIdToDelete })

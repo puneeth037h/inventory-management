@@ -22,7 +22,7 @@ function Categories() {
     }, [searchTerm, debouncedSearch]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/categories')
+        fetch('https://inventory-management-backend-9e9o.onrender.com/categories')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -35,7 +35,7 @@ function Categories() {
     }, []);
 
     function search(term) {
-        fetch('http://localhost:3000/searchcatgories', {
+        fetch('https://inventory-management-backend-9e9o.onrender.com/searchcatgories', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ searchTerm: term })
@@ -54,7 +54,7 @@ function Categories() {
         });
     }
     function del(categoryIdToDelete) {
-        fetch('http://localhost:3000/deletecategory', {
+        fetch('https://inventory-management-backend-9e9o.onrender.com/deletecategory', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ categoryId: categoryIdToDelete })

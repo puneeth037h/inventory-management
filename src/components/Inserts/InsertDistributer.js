@@ -22,7 +22,7 @@ function InsertDistributer(){
 
         try{
 
-            fetch('http://localhost:3000/insertdistributer' ,
+            fetch('https://inventory-management-backend-9e9o.onrender.com/insertdistributer' ,
             { method :'POST', headers:{'Content-Type' : 'application/json'} ,
                 body: JSON.stringify(data) }
             )  .then((res) => res.json())

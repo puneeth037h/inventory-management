@@ -30,7 +30,7 @@ function InsertProduct(){
 
         try{
 
-            fetch('http://localhost:3000/insertproduct' ,
+            fetch('https://inventory-management-backend-9e9o.onrender.com/insertproduct' ,
             { method :'POST', headers:{'Content-Type' : 'application/json'} ,
                 body: JSON.stringify(data) }
             )  .then((res) => res.json())

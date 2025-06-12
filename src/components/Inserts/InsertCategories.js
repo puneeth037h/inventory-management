@@ -22,7 +22,7 @@ function InsertCategories() {
         };
 
         try {
-            fetch('http://localhost:3000/insertcategory', {
+            fetch('https://inventory-management-backend-9e9o.onrender.com/insertcategory', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
