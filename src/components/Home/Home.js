@@ -21,7 +21,7 @@ function Home() {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setcategorynumber(data);
+                setcategorynumber(data );
             })
             .catch(error => {
                 console.error('Error fetching categories:', error);
@@ -33,8 +33,8 @@ function Home() {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setcustomernumber(data);
-            })
+                setcustomernumber(data );
+        
             .catch(error => {
                 console.error('Error fetching categories:', error);
             });
